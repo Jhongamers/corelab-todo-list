@@ -1,0 +1,26 @@
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 3.125rem;
+    padding-left: 8.5vw;
+    padding-right: 8.5vw;
+    /* Adicionando padding à direita para evitar o colamento */
+}
+
+
+.favoritasTitle {
+    font-size: 1.125rem;
+    padding-left: 13rem;
+    font-family: var(--font-inter);
+    font-weight: 400;
+    color: #464646;
+}
+
+.nofavoritasTitle {
+    font-size: 1.125rem;
+    padding-left: 13rem;
+    font-family: var(--font-inter);
+    font-weight: 400;
+    color: #464646;
+}

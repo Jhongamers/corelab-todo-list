@@ -1,0 +1,70 @@
+.header {
+    background-color: #FFFFFF;
+    height: 57px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #95959540;
+    width: 100%;
+    box-sizing: border-box;
+    /* Impede que o padding aumente o tamanho total do container */
+    overflow: hidden;
+    /* Impede a rolagem horizontal */
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-grow: 1;
+    max-width: calc(100% - 60px);
+    /* Ajusta o tamanho máximo para que o logoContainer não ultrapasse */
+}
+
+.logoIcon {
+    width: 40px;
+    height: auto;
+    margin-right: 8px;
+
+}
+
+.logo {
+    display: flex;
+    color: #455A64;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 400;
+    font-family: var(--font-inter);
+    font-size: 18px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #D9D9D9;
+    position: relative;
+}
+
+.searchBar span {
+    padding: 5px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 8px 15px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #455A64;
+    cursor: pointer;
+}
