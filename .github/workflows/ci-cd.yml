@@ -1,0 +1,76 @@
+# filepath: .github/workflows/ci-cd.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  backend:
+    name: Back-end Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuração do PHP e Composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, pdo, bcmath
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+          coverage: none
+
+      # Instalar dependências do Laravel
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+
+      # Configurar o arquivo .env
+      - name: Setup environment
+        run: cp back-end/.env.example back-end/.env
+
+      # Rodar as migrações e testes
+      - name: Run migrations and tests
+        run: |
+          php artisan migrate --env=testing
+          php artisan test
+
+  frontend:
+    name: Front-end Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuração do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Instalar dependências do front-end
+      - name: Install dependencies
+        run: |
+          cd front-end
+          npm install
+
+      # Rodar os testes do front-end
+      - name: Run tests
+        run: |
+          cd front-end
+          npm test
+
+      # Build do front-end
+      - name: Build front-end
+        run: |
+          cd front-end
+          npm run build
