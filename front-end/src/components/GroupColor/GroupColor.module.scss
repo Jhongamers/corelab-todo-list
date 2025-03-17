@@ -1,0 +1,25 @@
+.colorPickerWrapper {
+    background-color: #FFFFFF;
+    padding: 5px;
+    height: 56px;
+    border: 1px solid #D9D9D9;
+    border-radius: 9px;
+    align-items: center;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.groupColors {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    gap: 10px;
+}
+
+.color {
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -21,3 +22,51 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/front-end/.next/
+/front-end/.env.local
+
+# Laravel (PHP)
+vendor/
+.env
+.env.*
+/back-end/storage/*.key
+/back-end/storage/logs/*.log
+/back-end/storage/framework/cache/*
+/back-end/storage/framework/sessions/*
+/back-end/storage/framework/views/*
+/back-end/public/storage
+
+# Docker
+docker-compose.override.yml
+*.env
+*.log
+*.pid
+*.swp
+db-data/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Build artifacts
+/dist/
+/build/
+/out/
+
+# Miscellaneous
+*.bak
+*.tmp
+*.swp
+*.swo
+>>>>>>> master

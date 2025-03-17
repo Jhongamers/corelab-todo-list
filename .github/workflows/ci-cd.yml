@@ -1,0 +1,98 @@
+# filepath: .github/workflows/ci-cd.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  backend:
+    name: Back-end Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuração do PHP e Composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Atualizado para 8.2
+          extensions: mbstring, pdo, bcmath
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+          coverage: none
+
+      # Atualizar o Composer
+      - name: Update Composer
+        run: composer self-update
+
+      # Navegar para o diretório do back-end
+      - name: Navigate to back-end
+        working-directory: ./back-end
+        run: pwd
+
+      # Instalar dependências do Laravel
+      - name: Install dependencies
+        working-directory: ./back-end
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      # Configurar o arquivo .env
+      - name: Setup environment
+        working-directory: ./back-end
+        run: |
+          if [ ! -f .env.example ]; then
+            echo "APP_NAME=Laravel" > .env
+            echo "APP_ENV=local" >> .env
+            echo "APP_KEY=" >> .env
+            echo "APP_DEBUG=true" >> .env
+            echo "APP_URL=http://localhost" >> .env
+          else
+            cp .env.example .env
+          fi
+          php artisan key:generate
+
+      # Rodar as migrações e testes
+      - name: Run migrations and tests
+        working-directory: ./back-end
+        run: |
+          php artisan migrate --env=testing
+          php artisan test
+
+  frontend:
+    name: Front-end Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuração do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Instalar dependências do front-end
+      - name: Install dependencies
+        run: |
+          cd front-end
+          npm install
+
+      # Rodar os testes do front-end
+      - name: Run tests
+        run: |
+          cd front-end
+          npm test
+
+      # Build do front-end
+      - name: Build front-end
+        run: |
+          cd front-end
+          npm run build
