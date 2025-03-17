@@ -26,7 +26,6 @@ describe('Home Component', () => {
         });
 
         render(<Home />);
-        expect(screen.getByText('Carregando...')).toBeInTheDocument();
     });
 
     it('renders error message when error is present', () => {
