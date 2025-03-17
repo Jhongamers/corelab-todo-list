@@ -23,10 +23,14 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2' # Atualizado para 8.2
           extensions: mbstring, pdo, bcmath
           ini-values: post_max_size=256M, upload_max_filesize=256M
           coverage: none
+
+      # Atualizar o Composer
+      - name: Update Composer
+        run: composer self-update
 
       # Navegar para o diretório do back-end
       - name: Navigate to back-end
