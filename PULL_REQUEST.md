@@ -23,10 +23,6 @@
 - O frontend foi desenvolvido em React/Next.js e consome a API do backend.
 - O projeto utiliza Docker para facilitar a configuração do ambiente de desenvolvimento.
 
-## 📹 Demonstração
-
-- [Adicione aqui um link para um vídeo explicativo ou GIFs mostrando o funcionamento do projeto.]
-
 ## 🛠️ Como rodar o projeto?
 
 As instruções detalhadas para rodar o projeto estão no arquivo [`README.md`](README.md).
